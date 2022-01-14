@@ -13,3 +13,9 @@ def LOGIN(ID, PW, HOST='127.0.0.1'):
     except :
         messagebox.showerror('오류!', '알수 없는 에러.' )
         return None
+
+def GET_TABLE(connection, DB='bmr_db', TABLE='환자정보'):
+    curs = connection.cursor(sql.cursors.DictCursor)
+    curs.execute('USE {}'.format(DB))
+    curs.execute('select * from {}'.format(TABLE))
+    return curs.fetchall()
