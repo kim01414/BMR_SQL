@@ -19,3 +19,10 @@ def GET_TABLE(connection, DB='bmr_db', TABLE='환자정보'):
     curs.execute('USE {}'.format(DB))
     curs.execute('select * from {}'.format(TABLE))
     return curs.fetchall()
+
+def COMMIT_ORDER(connection, ORDER, DB='bmr_db', TABLE='환자정보'):
+    print('UPLOAD {}'.format(ORDER))
+    curs = connection.cursor(sql.cursors.DictCursor)
+    curs.execute('USE {}'.format(DB))
+    curs.execute(ORDER)
+    connection.commit()
